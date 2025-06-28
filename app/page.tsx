@@ -1004,7 +1004,7 @@ export default function AerotraqLanding() {
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <Card className="bg-white border-slate-200 text-center">
-              <CardHeader>
+                <CardHeader>
                 <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
                   <Image 
                     src="/OG.png" 
@@ -1016,8 +1016,8 @@ export default function AerotraqLanding() {
                 </div>
                 <CardTitle className="text-midnight">Ridwan Oseni</CardTitle>
                 <CardDescription>Founder & Full-Stack AI/Web3 Developer</CardDescription>
-              </CardHeader>
-              <CardContent>
+                </CardHeader>
+                <CardContent>
                 <p className="text-sm text-text mb-4">
                   Founder & Full-Stack Developer | AI + Blockchain Innovator. Building Aerotraq: a decentralized 
                   infrastructure for the drone and airspace economy. Passionate about applying frontier tech to 
@@ -1033,8 +1033,8 @@ export default function AerotraqLanding() {
                   <Linkedin className="w-4 h-4 mr-1" />
                   View LinkedIn Profile
                 </a>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
             <Card className="bg-white border-slate-200 text-center">
               <CardHeader>
