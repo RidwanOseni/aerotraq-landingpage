@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import {
-  Plane,
   Shield,
   Coins,
   TrendingUp,
@@ -121,7 +120,7 @@ export default function AerotraqLanding() {
         document.removeEventListener('keydown', handleTab);
         document.removeEventListener('keydown', handleEsc);
       };
-    }, [showEarlyAccessModal]);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -212,7 +211,7 @@ export default function AerotraqLanding() {
                   Request Early Access
                 </CardTitle>
                 <CardDescription className="text-gray-300 max-w-md mx-auto">
-                  We're inviting a select group of early users to help define the future of drone IP and data monetization. If that's you — apply below.
+                  We&apos;re inviting a select group of early users to help define the future of drone IP and data monetization. If that&apos;s you — apply below.
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-6 py-4">
@@ -306,7 +305,7 @@ export default function AerotraqLanding() {
                   </div>
                   {/* Pain Point */}
                   <div>
-                    <label htmlFor="challenge" className="block text-sm font-medium text-gray-300 mb-1">What's your biggest challenge with drone data or compliance today? (Optional)</label>
+                    <label htmlFor="challenge" className="block text-sm font-medium text-gray-300 mb-1">What&apos;s your biggest challenge with drone data or compliance today? (Optional)</label>
                     <textarea id="challenge" rows={3} placeholder="Describe your challenges..." value={challenge} onChange={e => setChallenge(e.target.value)}
                       className="flex w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     ></textarea>
@@ -317,7 +316,7 @@ export default function AerotraqLanding() {
                       className="form-checkbox h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded mt-1"
                     />
                     <label htmlFor="terms" className="ml-2 text-sm text-gray-300">
-                      I agree to the <a href="#" className="underline hover:text-blue-400 transition-colors">early access terms</a> & may be contacted for feedback. <span className="text-red-500">*</span>
+                      I agree to the <a href="#" className="underline hover:text-blue-400 transition-colors">early access terms</a> &amp; may be contacted for feedback. <span className="text-red-500">*</span>
                     </label>
                   </div>
 
@@ -344,7 +343,7 @@ export default function AerotraqLanding() {
                     )}
                   </Button>
                   <p className="text-center text-gray-400 text-sm mt-3">
-                    Only a few will be selected for this first wave. We're looking for innovators.
+                    Only a few will be selected for this first wave. We&apos;re looking for innovators.
                   </p>
                 </form>
               </CardContent>
@@ -356,9 +355,9 @@ export default function AerotraqLanding() {
                 Thanks, Commander! Your application has landed.
               </CardTitle>
               <CardDescription className="text-gray-300">
-                We're reviewing your mission profile and will be in touch soon.
+                We&apos;re reviewing your mission profile and will be in touch soon.
               </CardDescription>
-              <p className="text-sm text-gray-400 mt-4">You'll be among the first to explore drone IP monetization.</p>
+              <p className="text-sm text-gray-400 mt-4">You&apos;ll be among the first to explore drone IP monetization.</p>
             </CardContent>
           )}
         </Card>
@@ -931,7 +930,7 @@ export default function AerotraqLanding() {
               </p>
               <p>
                 Aerotraq changes this dynamic by giving drone operators sovereign ownership of their data and the tools
-                to monetize it directly. Through blockchain technology and programmable IP licensing, we're building the
+                to monetize it directly. Through blockchain technology and programmable IP licensing, we&apos;re building the
                 infrastructure that ensures data creators are fairly compensated for their contributions to the digital
                 economy.
               </p>
@@ -1048,7 +1047,7 @@ export default function AerotraqLanding() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-text mb-4">
-                  Product & Technology Strategist | 17+ Years in Scalable Digital Systems. Driving Aerotraq's 
+                  Product & Technology Strategist | 17+ Years in Scalable Digital Systems. Driving Aerotraq&apos;s 
                   product vision and technical architecture. Blending deep engineering experience with product 
                   insight to build AI-enhanced, scalable infrastructure for the future of drone and airspace innovation.
                 </p>
