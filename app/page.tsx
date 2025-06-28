@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 import {
   Shield,
   Coins,
@@ -373,7 +374,7 @@ export default function AerotraqLanding() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <div className="w-9 h-9 rounded-lg flex items-center justify-center shadow-lg" style={{ backgroundColor: '#2D4897' }}>
-                <img src="/aerotraq-logo.png" alt="Aerotraq Logo" className="w-12 h-12 object-contain" />
+                <Image src="/aerotraq-logo.png" alt="Aerotraq Logo" width={48} height={48} className="object-contain" />
               </div>
               <span className="text-xl font-bold text-midnight">Aerotraq</span>
             </div>
@@ -924,7 +925,7 @@ export default function AerotraqLanding() {
             </h2>
             <div className="space-y-6 text-lg text-text">
               <p>
-                Today's drone operators generate valuable data but rarely capture its economic value. Large corporations
+                Today&apos;s drone operators generate valuable data but rarely capture its economic value. Large corporations
                 and data aggregators profit from drone-generated insights while the creators receive nothing. This
                 fundamental imbalance stifles innovation and limits the growth potential of the drone economy.
               </p>
@@ -1005,9 +1006,11 @@ export default function AerotraqLanding() {
             <Card className="bg-white border-slate-200 text-center">
               <CardHeader>
                 <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
-                  <img 
+                  <Image 
                     src="/OG.png" 
                     alt="Ridwan Oseni" 
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1036,9 +1039,11 @@ export default function AerotraqLanding() {
             <Card className="bg-white border-slate-200 text-center">
               <CardHeader>
                 <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
-                  <img 
+                  <Image 
                     src="/Ioana.png" 
                     alt="Ioana Luncan" 
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1175,7 +1180,7 @@ export default function AerotraqLanding() {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-2 mb-6">
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center shadow-lg" style={{ backgroundColor: '#2D4897' }}>
-                  <img src="/aerotraq-logo.png" alt="Aerotraq Logo" className="w-12 h-12 object-contain" />
+                  <Image src="/aerotraq-logo.png" alt="Aerotraq Logo" width={48} height={48} className="object-contain" />
                 </div>
                 <span className="text-2xl font-bold">Aerotraq</span>
               </div>
