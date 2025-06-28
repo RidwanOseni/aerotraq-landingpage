@@ -728,7 +728,7 @@ export default function AerotraqLanding() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center">
-                  Create smart contracts that automatically manage licensing terms and usage rights for your data.
+                  We automatically generate smart contracts that enforce your chosen licensing terms and usage rights — no technical setup required.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -817,7 +817,7 @@ export default function AerotraqLanding() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-midnight mb-4">See Aerotraq in Action</h2>
             <p className="text-xl text-text max-w-3xl mx-auto">
-              Watch how drone operators are already monetizing their data with our platform
+              See how drone operators will soon turn their flight data into revenue — powered by our upcoming platform
             </p>
           </div>
           <div className="relative max-w-4xl mx-auto">
