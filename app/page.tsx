@@ -1015,7 +1015,7 @@ export default function AerotraqLanding() {
                   />
                 </div>
                 <CardTitle className="text-midnight">Ridwan Oseni</CardTitle>
-                <CardDescription>Founder & Full-Stack AI/Web3 Developer</CardDescription>
+                <CardDescription>Co-Founder & Full-Stack AI/Web3 Developer</CardDescription>
                 </CardHeader>
                 <CardContent>
                 <p className="text-sm text-text mb-4">
