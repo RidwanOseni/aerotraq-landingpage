@@ -623,8 +623,8 @@ export default function AerotraqLanding() {
               <Image
                 src="/drone-fixed-wing.png"
                 alt="Fixed-wing surveillance drone"
-                width={desiredWidth}
-                height={desiredHeight}
+                width={500}
+                height={500}
                 className="w-36 h-36 lg:w-48 lg:h-48 object-contain filter brightness-110 drop-shadow-lg"
               />
             </div>
@@ -641,8 +641,8 @@ export default function AerotraqLanding() {
               <Image
                 src="/drone-quadcopter.png"
                 alt="Consumer quadcopter drone"
-                width={desiredWidth}
-                height={desiredHeight}
+                width={500}
+                height={500}
                 className="w-28 h-28 lg:w-36 lg:h-36 object-contain filter brightness-110 drop-shadow-lg"
               />
             </div>
