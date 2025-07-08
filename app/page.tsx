@@ -428,7 +428,7 @@ export default function AerotraqLanding() {
         </div>
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex flex-col md:hidden">
+          <div className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-sm flex flex-col md:hidden">
             <div className="flex justify-end p-4">
               <button
                 className="text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition"
