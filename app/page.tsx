@@ -385,18 +385,29 @@ export default function AerotraqLanding() {
               <a href="#how-it-works" className="text-text hover:text-primary transition-colors">
                 How It Works
               </a>
+              <a href="#data-buyers" className="text-text hover:text-primary transition-colors">
+                For Data Buyers
+              </a>
               <a href="#demo" className="text-text hover:text-primary transition-colors">
                 Demo
               </a>
               <a href="#team" className="text-text hover:text-primary transition-colors">
                 Team
               </a>
-              <Button
-                className="bg-primary hover:bg-primary/90 text-white"
-                onClick={() => setShowEarlyAccessModal(true)}
-              >
-                Request Early Access
-              </Button>
+              <div className="flex space-x-3 ml-4">
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-white"
+                  onClick={() => setShowEarlyAccessModal(true)}
+                >
+                  For Operators
+                </Button>
+                <Button
+                  className="bg-secondary hover:bg-secondary/90 text-primary border border-primary"
+                  onClick={() => {/* Placeholder for buyers modal */}}
+                >
+                  For Buyers
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -639,7 +650,7 @@ export default function AerotraqLanding() {
               Tokenize the Sky. Monetize the Data.
             </h1>
             <p className="text-xl lg:text-2xl text-gray-200 mb-4 max-w-4xl mx-auto leading-relaxed font-medium">
-              The decentralized infrastructure for the drone and aerospace economy.
+            The decentralized infrastructure for the drone and aerospace economy — with a focus on underserved regions.
             </p>
             <p className="text-lg lg:text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               Register flights, validate compliance with AI, and license your drone-generated data as on-chain IP with
@@ -807,6 +818,25 @@ export default function AerotraqLanding() {
                 </Badge>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* For Data Buyers Section */}
+      <section id="data-buyers" className="py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-midnight mb-4">FOR DATA BUYERS & RESEARCHERS</h2>
+            <p className="text-xl text-text mb-6">Gain early access to drone data from underserved regions.</p>
+            <p className="text-lg text-gray-700 mb-6 font-medium">Validated. Compliant. Traceable. Licensed for commercial & research use.</p>
+            <p className="text-md text-text mb-10">Whether you're in agri-tech, climate modeling, or geospatial analytics — our marketplace connects you to critical datasets from overlooked areas.</p>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white px-10 py-5 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() => {/* Placeholder for buyers waitlist modal */}}
+            >
+              Join Buyer Waitlist
+            </Button>
           </div>
         </div>
       </section>
