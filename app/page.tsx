@@ -440,37 +440,39 @@ export default function AerotraqLanding() {
                 </svg>
               </button>
             </div>
-            <nav className="flex flex-col items-center space-y-6 mt-8">
-              <a href="#features" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Features
-              </a>
-              <a href="#how-it-works" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                How It Works
-              </a>
-              <a href="#data-buyers" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                For Data Buyers
-              </a>
-              <a href="#demo" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Demo
-              </a>
-              <a href="#team" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Team
-              </a>
-              <div className="flex flex-col space-y-4 w-full px-8 mt-4">
-                <Button
-                  className="bg-primary hover:bg-primary/90 text-white w-full"
-                  onClick={() => { setShowEarlyAccessModal(true); setMobileMenuOpen(false); }}
-                >
-                  For Operators
-                </Button>
-                <Button
-                  className="bg-secondary hover:bg-secondary/90 text-primary border border-primary w-full"
-                  onClick={() => { /* Placeholder for buyers modal */ setMobileMenuOpen(false); }}
-                >
-                  For Buyers
-                </Button>
-              </div>
-            </nav>
+            <div className="flex flex-1 items-center justify-center">
+              <nav className="w-full max-w-xs bg-gray-900/95 rounded-lg shadow-lg p-6 flex flex-col items-center space-y-6">
+                <a href="#features" className="text-white text-lg font-medium hover:text-primary transition-colors w-full text-center" onClick={() => setMobileMenuOpen(false)}>
+                  Features
+                </a>
+                <a href="#how-it-works" className="text-white text-lg font-medium hover:text-primary transition-colors w-full text-center" onClick={() => setMobileMenuOpen(false)}>
+                  How It Works
+                </a>
+                <a href="#data-buyers" className="text-white text-lg font-medium hover:text-primary transition-colors w-full text-center" onClick={() => setMobileMenuOpen(false)}>
+                  For Data Buyers
+                </a>
+                <a href="#demo" className="text-white text-lg font-medium hover:text-primary transition-colors w-full text-center" onClick={() => setMobileMenuOpen(false)}>
+                  Demo
+                </a>
+                <a href="#team" className="text-white text-lg font-medium hover:text-primary transition-colors w-full text-center" onClick={() => setMobileMenuOpen(false)}>
+                  Team
+                </a>
+                <div className="flex flex-col space-y-4 w-full mt-4">
+                  <Button
+                    className="bg-primary hover:bg-primary/90 text-white w-full"
+                    onClick={() => { setShowEarlyAccessModal(true); setMobileMenuOpen(false); }}
+                  >
+                    For Operators
+                  </Button>
+                  <Button
+                    className="bg-white hover:bg-gray-100 text-primary border border-primary w-full"
+                    onClick={() => { /* Placeholder for buyers modal */ setMobileMenuOpen(false); }}
+                  >
+                    For Buyers
+                  </Button>
+                </div>
+              </nav>
+            </div>
           </div>
         )}
       </nav>
