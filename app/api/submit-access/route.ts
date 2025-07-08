@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Airtable from 'airtable';
 
-// Initialize Airtable
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base(process.env.AIRTABLE_BASE_ID!);
+// Remove top-level Airtable initialization
 
 export async function POST(request: NextRequest) {
   try {
+    // Initialize Airtable inside the handler
+    const base = new Airtable({
+      apiKey: process.env.AIRTABLE_API_KEY,
+    }).base(process.env.AIRTABLE_BASE_ID!);
+
     // Parse the request body
     const body = await request.json();
     

@@ -29,6 +29,8 @@ export default function AerotraqLanding() {
   // Modal state
   const [showDemoModal, setShowDemoModal] = useState(false)
   const [showEarlyAccessModal, setShowEarlyAccessModal] = useState(false)
+  // Mobile menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Modal component
   function DemoModal() {
@@ -380,6 +382,7 @@ export default function AerotraqLanding() {
               </div>
               <span className="text-xl font-bold text-midnight">Aerotraq</span>
             </div>
+            {/* Desktop Navbar */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-text hover:text-primary transition-colors">
                 Features
@@ -411,8 +414,65 @@ export default function AerotraqLanding() {
                 </Button>
               </div>
             </div>
+            {/* Hamburger for Mobile */}
+            <button
+              className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+              aria-label="Open menu"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex flex-col md:hidden">
+            <div className="flex justify-end p-4">
+              <button
+                className="text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition"
+                aria-label="Close menu"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              </button>
+            </div>
+            <nav className="flex flex-col items-center space-y-6 mt-8">
+              <a href="#features" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Features
+              </a>
+              <a href="#how-it-works" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                How It Works
+              </a>
+              <a href="#data-buyers" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                For Data Buyers
+              </a>
+              <a href="#demo" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Demo
+              </a>
+              <a href="#team" className="text-white text-lg font-medium hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Team
+              </a>
+              <div className="flex flex-col space-y-4 w-full px-8 mt-4">
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-white w-full"
+                  onClick={() => { setShowEarlyAccessModal(true); setMobileMenuOpen(false); }}
+                >
+                  For Operators
+                </Button>
+                <Button
+                  className="bg-secondary hover:bg-secondary/90 text-primary border border-primary w-full"
+                  onClick={() => { /* Placeholder for buyers modal */ setMobileMenuOpen(false); }}
+                >
+                  For Buyers
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
