@@ -618,9 +618,11 @@ export default function AerotraqLanding() {
             <div className="absolute inset-2 bg-gradient-radial from-white/15 via-white/8 to-transparent rounded-full blur-md"></div>
             {/* Main container */}
             <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-primary/20 flex items-center justify-center backdrop-blur-sm">
-              <img
+              <Image
                 src="/drone-fixed-wing.png"
                 alt="Fixed-wing surveillance drone"
+                width={desiredWidth}
+                height={desiredHeight}
                 className="w-36 h-36 lg:w-48 lg:h-48 object-contain filter brightness-110 drop-shadow-lg"
               />
             </div>
@@ -634,9 +636,11 @@ export default function AerotraqLanding() {
             <div className="absolute inset-2 bg-gradient-radial from-white/15 via-white/8 to-transparent rounded-full blur-md"></div>
             {/* Main container */}
             <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-primary/20 flex items-center justify-center backdrop-blur-sm">
-              <img
+              <Image
                 src="/drone-quadcopter.png"
                 alt="Consumer quadcopter drone"
+                width={desiredWidth}
+                height={desiredHeight}
                 className="w-28 h-28 lg:w-36 lg:h-36 object-contain filter brightness-110 drop-shadow-lg"
               />
             </div>
@@ -650,7 +654,7 @@ export default function AerotraqLanding() {
               Tokenize the Sky. Monetize the Data.
             </h1>
             <p className="text-xl lg:text-2xl text-gray-200 mb-4 max-w-4xl mx-auto leading-relaxed font-medium">
-            The decentralized infrastructure for the drone and aerospace economy — with a focus on underserved regions.
+            The decentralized infrastructure for the drone and aerospace economy, with a focus on underserved regions.
             </p>
             <p className="text-lg lg:text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               Register flights, validate compliance with AI, and license your drone-generated data as on-chain IP with
