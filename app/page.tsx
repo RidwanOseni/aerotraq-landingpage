@@ -835,7 +835,7 @@ export default function AerotraqLanding() {
             <h2 className="text-4xl font-bold text-midnight mb-4">FOR DATA BUYERS & RESEARCHERS</h2>
             <p className="text-xl text-text mb-6">Gain early access to drone data from underserved regions.</p>
             <p className="text-lg text-gray-700 mb-6 font-medium">Validated. Compliant. Traceable. Licensed for commercial & research use.</p>
-            <p className="text-md text-text mb-10">Whether you're in agri-tech, climate modeling, or geospatial analytics — our marketplace connects you to critical datasets from overlooked areas.</p>
+            <p className="text-md text-text mb-10">Whether you&apos;re in agri-tech, climate modeling, or geospatial analytics — our marketplace connects you to critical datasets from overlooked areas.</p>
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-white px-10 py-5 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
@@ -1055,7 +1055,7 @@ export default function AerotraqLanding() {
                 </CardHeader>
                 <CardContent>
                 <p className="text-sm text-text mb-4">
-                  Founder & Full-Stack Developer | AI + Blockchain Innovator. Building Aerotraq: a decentralized 
+                  Founder &amp; Full-Stack Developer | AI + Blockchain Innovator. Building Aerotraq: a decentralized 
                   infrastructure for the drone and airspace economy. Passionate about applying frontier tech to 
                   real-world systems — with deep expertise in AI and Web3, and a focused mission to reimagine 
                   how drones register, comply, and monetize their data.
@@ -1088,7 +1088,7 @@ export default function AerotraqLanding() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-text mb-4">
-                  Product & Technology Strategist | 17+ Years in Scalable Digital Systems. Driving Aerotraq&apos;s 
+                  Product &amp; Technology Strategist | 17+ Years in Scalable Digital Systems. Driving Aerotraq&apos;s 
                   product vision and technical architecture. Blending deep engineering experience with product 
                   insight to build AI-enhanced, scalable infrastructure for the future of drone and airspace innovation.
                 </p>
