@@ -306,7 +306,9 @@ export default function AerotraqLanding() {
                   </div>
                   {/* Pain Point */}
                   <div>
-                    <label htmlFor="challenge" className="block text-sm font-medium text-gray-300 mb-1">What&apos;s your biggest challenge with drone data or compliance today? (Optional)</label>
+                    <label htmlFor="challenge" className="block text-sm font-medium text-gray-300 mb-1">
+                      What&apos;s your biggest challenge with drone data or compliance today? (Optional)
+                    </label>
                     <textarea id="challenge" rows={3} placeholder="Describe your challenges..." value={challenge} onChange={e => setChallenge(e.target.value)}
                       className="flex w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     ></textarea>
