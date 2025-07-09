@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Airtable from 'airtable';
 
-// Remove top-level Airtable initialization
-
 export async function POST(request: NextRequest) {
   try {
+    console.log('Starting API request...');
+    
     // Initialize Airtable inside the handler
     const base = new Airtable({
       apiKey: process.env.AIRTABLE_API_KEY,
     }).base(process.env.AIRTABLE_BASE_ID!);
+
+    console.log('Airtable initialized with base ID:', process.env.AIRTABLE_BASE_ID);
 
     // Parse the request body
     const body = await request.json();
@@ -43,6 +45,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log('About to check for existing records with email:', email);
+
+    // Check for existing record with the same email
+    const existingRecords = await base('For Drone Operators').select({
+      filterByFormula: `{Email} = '${email}'`,
+      maxRecords: 1,
+    }).firstPage();
+
+    console.log('Existing records found:', existingRecords.length);
+
+    if (existingRecords.length > 0) {
+      return NextResponse.json(
+        { error: 'An application with this email address has already been submitted. Please use a different email or contact us if you need to update your application.' },
+        { status: 409 }
+      );
+    }
+
+    console.log('No duplicates found, proceeding to create record...');
+
     // Prepare data for Airtable with exact field names
     const airtableData = {
       'Name': name,
@@ -58,12 +79,16 @@ export async function POST(request: NextRequest) {
       'Submission Date': new Date().toISOString().split('T')[0],
     };
 
+    console.log('About to create record in Airtable...');
+
     // Create record in Airtable
-    const record = await base('Drone Inquiry').create([
+    const record = await base('For Drone Operators').create([
       {
         fields: airtableData,
       },
     ]);
+
+    console.log('Record created successfully:', record[0].id);
 
     return NextResponse.json(
       {
