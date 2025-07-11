@@ -29,6 +29,7 @@ export default function AerotraqLanding() {
   // Modal state
   const [showDemoModal, setShowDemoModal] = useState(false)
   const [showEarlyAccessModal, setShowEarlyAccessModal] = useState(false)
+  const [showBuyerModal, setShowBuyerModal] = useState(false);
   // Mobile menu state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -370,6 +371,265 @@ export default function AerotraqLanding() {
     );
   }
 
+  // Early Access Modal component
+  function BuyerModal() {
+    const modalRef = React.useRef<HTMLDivElement>(null);
+    // Form state
+    const [fullName, setFullName] = useState('');
+    const [organization, setOrganization] = useState('');
+    const [workEmail, setWorkEmail] = useState('');
+    const [role, setRole] = useState('');
+    const [dataInterests, setDataInterests] = useState<string[]>([]);
+    const [preferredRegions, setPreferredRegions] = useState('');
+    const [dataSpecs, setDataSpecs] = useState('');
+    const [dataLicensingType, setDataLicensingType] = useState('');
+    const [intendedUseCase, setIntendedUseCase] = useState('');
+    const [timeline, setTimeline] = useState('');
+    const [customPilot, setCustomPilot] = useState('');
+    const [additionalComments, setAdditionalComments] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState('');
+    // Add a new state for 'Other' data interest
+    const [otherDataInterest, setOtherDataInterest] = useState('');
+
+    // Focus trap and Escape key close
+    React.useEffect(() => {
+      if (!showBuyerModal) return;
+      const firstInput = modalRef.current?.querySelector('input, select, textarea, button') as HTMLElement;
+      firstInput?.focus();
+      const handleTab = (e: KeyboardEvent) => {
+        const focusableEls = modalRef.current?.querySelectorAll<HTMLElement>('input, select, textarea, button, [tabindex]:not([tabindex="-1"])');
+        if (!focusableEls || focusableEls.length === 0) return;
+        const firstEl = focusableEls[0];
+        const lastEl = focusableEls[focusableEls.length - 1];
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstEl) {
+              e.preventDefault();
+              lastEl.focus();
+            }
+          } else {
+            if (document.activeElement === lastEl) {
+              e.preventDefault();
+              firstEl.focus();
+            }
+          }
+        }
+      };
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setShowBuyerModal(false);
+      };
+      document.addEventListener('keydown', handleTab);
+      document.addEventListener('keydown', handleEsc);
+      return () => {
+        document.removeEventListener('keydown', handleTab);
+        document.removeEventListener('keydown', handleEsc);
+      };
+    }, [showBuyerModal]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setError('');
+      setIsSubmitting(true);
+      try {
+        const formData = {
+          fullName,
+          organization,
+          workEmail,
+          role,
+          dataInterests: dataInterests.includes('Other') && otherDataInterest ? [...dataInterests.filter(i => i !== 'Other'), otherDataInterest] : dataInterests,
+          preferredRegions,
+          dataSpecs,
+          dataLicensingType,
+          intendedUseCase,
+          timeline,
+          customPilot,
+          additionalComments,
+        };
+        const response = await fetch('/api/submit-buyer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to submit application');
+        }
+        setSubmitted(true);
+        setTimeout(() => {
+          setShowBuyerModal(false);
+          setSubmitted(false);
+          setIsSubmitting(false);
+          setFullName('');
+          setOrganization('');
+          setWorkEmail('');
+          setRole('');
+          setDataInterests([]);
+          setPreferredRegions('');
+          setDataSpecs('');
+          setDataLicensingType('');
+          setIntendedUseCase('');
+          setTimeline('');
+          setCustomPilot('');
+          setAdditionalComments('');
+          setOtherDataInterest('');
+        }, 8000);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : 'Failed to submit application. Please try again.');
+        setIsSubmitting(false);
+      }
+    };
+    if (!showBuyerModal) return null;
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 overflow-y-auto" role="dialog" aria-modal="true" onClick={() => setShowBuyerModal(false)}>
+        <Card ref={modalRef} className="w-full max-w-lg mx-auto bg-gradient-to-br from-gray-800 to-black text-white border border-gray-700 shadow-2xl relative max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+          <Button onClick={() => setShowBuyerModal(false)} className="absolute top-4 right-4 text-gray-400 bg-transparent rounded-full p-2 hover:bg-gray-700/50 transition" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </Button>
+          {!submitted ? (
+            <>
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-2">Join Buyer Waitlist</CardTitle>
+                <CardDescription className="text-gray-300 max-w-md mx-auto">Apply to access exclusive drone datasets or request custom data acquisition in underserved regions.</CardDescription>
+              </CardHeader>
+              <CardContent className="px-6 py-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-300 mb-1">Full Name <span className="text-red-500">*</span></label>
+                    <Input id="fullName" type="text" placeholder="Your Name" value={fullName} onChange={e => setFullName(e.target.value)} required className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" />
+                  </div>
+                  <div>
+                    <label htmlFor="organization" className="block text-sm font-medium text-gray-300 mb-1">Organization / Company</label>
+                    <Input id="organization" type="text" placeholder="Your Organization" value={organization} onChange={e => setOrganization(e.target.value)} className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" />
+                  </div>
+                  <div>
+                    <label htmlFor="workEmail" className="block text-sm font-medium text-gray-300 mb-1">Work Email <span className="text-red-500">*</span></label>
+                    <Input id="workEmail" type="email" placeholder="you@company.com" value={workEmail} onChange={e => setWorkEmail(e.target.value)} required className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" />
+                  </div>
+                  <div>
+                    <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">Your Role</label>
+                    <select id="role" value={role} onChange={e => setRole(e.target.value)} className="flex h-10 w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                      <option value="">Select a role</option>
+                      <option value="Product Manager">Product Manager</option>
+                      <option value="Data Scientist">Data Scientist</option>
+                      <option value="GIS Analyst">GIS Analyst</option>
+                      <option value="Researcher">Researcher</option>
+                      <option value="Program Lead">Program Lead</option>
+                      <option value="CTO / Founder">CTO / Founder</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">What type of drone data are you interested in?</label>
+                    <div className="space-y-2">
+                      {['Crop monitoring / NDVI imagery','Climate or weather modeling','Disaster mapping / resilience','Infrastructure inspection','Biodiversity / Wildlife tracking','Custom aerial mapping'].map(opt => (
+                        <label key={opt} className="flex items-center text-gray-300">
+                          <input type="checkbox" className="form-checkbox h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" checked={dataInterests.includes(opt)} onChange={e => setDataInterests(prev => e.target.checked ? [...prev, opt] : prev.filter(i => i !== opt))} />
+                          <span className="ml-2">{opt}</span>
+                        </label>
+                      ))}
+                      <label className="flex items-center text-gray-300">
+                        <input type="checkbox" className="form-checkbox h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" checked={dataInterests.includes('Other')} onChange={e => setDataInterests(prev => e.target.checked ? [...prev, 'Other'] : prev.filter(i => i !== 'Other'))} />
+                        <span className="ml-2">Other</span>
+                      </label>
+                    </div>
+                    {dataInterests.includes('Other') && (
+                      <div className="mt-3">
+                        <label htmlFor="otherDataInterest" className="block text-sm font-medium text-gray-300 mb-1">Please specify other data interests <span className="text-gray-400">(optional)</span></label>
+                        <Input id="otherDataInterest" type="text" placeholder="Describe your data interests" value={otherDataInterest} onChange={e => setOtherDataInterest(e.target.value)} className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" />
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="preferredRegions" className="block text-sm font-medium text-gray-300 mb-1">Preferred regions / countries of interest</label>
+                    <Input id="preferredRegions" type="text" placeholder="e.g. Malawi, Nepal, Northern Ghana" value={preferredRegions} onChange={e => setPreferredRegions(e.target.value)} className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" />
+                  </div>
+                  <div>
+                    <label htmlFor="dataSpecs" className="block text-sm font-medium text-gray-300 mb-1">Do you have any data specifications or format requirements? <span className="text-gray-400">(optional)</span></label>
+                    <textarea id="dataSpecs" rows={2} placeholder="e.g. resolution, time of day, NDVI format, geoTIFF, CSV, etc." value={dataSpecs} onChange={e => setDataSpecs(e.target.value)} className="flex w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Are you interested in licensing existing datasets, commissioning new flights, or both?</label>
+                    <div className="flex flex-col space-y-2">
+                      <label className="flex items-center text-gray-300">
+                        <input type="radio" name="dataLicensingType" value="Licensing existing drone datasets" checked={dataLicensingType === 'Licensing existing drone datasets'} onChange={e => setDataLicensingType(e.target.value)} className="form-radio h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" />
+                        <span className="ml-2">Licensing existing drone datasets</span>
+                      </label>
+                      <label className="flex items-center text-gray-300">
+                        <input type="radio" name="dataLicensingType" value="Commissioning new data collection" checked={dataLicensingType === 'Commissioning new data collection'} onChange={e => setDataLicensingType(e.target.value)} className="form-radio h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" />
+                        <span className="ml-2">Commissioning new data collection</span>
+                      </label>
+                      <label className="flex items-center text-gray-300">
+                        <input type="radio" name="dataLicensingType" value="Both" checked={dataLicensingType === 'Both'} onChange={e => setDataLicensingType(e.target.value)} className="form-radio h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" />
+                        <span className="ml-2">Both</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="intendedUseCase" className="block text-sm font-medium text-gray-300 mb-1">What would you use this data for?</label>
+                    <textarea id="intendedUseCase" rows={2} placeholder="Describe your use case..." value={intendedUseCase} onChange={e => setIntendedUseCase(e.target.value)} className="flex w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                  </div>
+                  <div>
+                    <label htmlFor="timeline" className="block text-sm font-medium text-gray-300 mb-1">When would you ideally like to access this data?</label>
+                    <select id="timeline" value={timeline} onChange={e => setTimeline(e.target.value)} className="flex h-10 w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                      <option value="">Select a timeline</option>
+                      <option value="Immediately">Immediately</option>
+                      <option value="Within 1 month">Within 1 month</option>
+                      <option value="1–3 months">1–3 months</option>
+                      <option value="3–6 months">3–6 months</option>
+                      <option value="Just exploring for now">Just exploring for now</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Would you like to speak to our team about a custom data pilot?</label>
+                    <div className="flex flex-col space-y-2">
+                      <label className="flex items-center text-gray-300">
+                        <input type="radio" name="customPilot" value="Yes, please contact me" checked={customPilot === 'Yes, please contact me'} onChange={e => setCustomPilot(e.target.value)} className="form-radio h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" />
+                        <span className="ml-2">Yes, please contact me</span>
+                      </label>
+                      <label className="flex items-center text-gray-300">
+                        <input type="radio" name="customPilot" value="Not yet, just browsing" checked={customPilot === 'Not yet, just browsing'} onChange={e => setCustomPilot(e.target.value)} className="form-radio h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded" />
+                        <span className="ml-2">Not yet, just browsing</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="additionalComments" className="block text-sm font-medium text-gray-300 mb-1">Any other comments or requirements? <span className="text-gray-400">(optional)</span></label>
+                    <textarea id="additionalComments" rows={2} placeholder="Add any comments or requirements..." value={additionalComments} onChange={e => setAdditionalComments(e.target.value)} className="flex w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                  </div>
+                  {error && (
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </div>
+                  )}
+                  <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white px-10 py-5 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Submitting...
+                      </div>
+                    ) : (
+                      'Submit Request'
+                    )}
+                  </Button>
+                  <p className="text-center text-gray-400 text-sm mt-3">We review all requests and will be in touch if you are selected for early access.</p>
+                </form>
+              </CardContent>
+            </>
+          ) : (
+            <CardContent className="flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
+              <Trophy className="w-16 h-16 text-primary mb-4 animate-bounce" />
+              <CardTitle className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-2">Thanks for your interest!</CardTitle>
+              <CardDescription className="text-gray-300">We&apos;ll review your request and reach out if you&apos;re selected for early access.</CardDescription>
+              <p className="text-sm text-gray-400 mt-4">You&apos;ll be among the first to access exclusive drone data from underserved regions.</p>
+            </CardContent>
+          )}
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -408,7 +668,7 @@ export default function AerotraqLanding() {
                 </Button>
                 <Button
                   className="bg-secondary hover:bg-secondary/90 text-primary border border-primary"
-                  onClick={() => {/* Placeholder for buyers modal */}}
+                  onClick={() => setShowBuyerModal(true)}
                 >
                   For Buyers
                 </Button>
@@ -466,7 +726,7 @@ export default function AerotraqLanding() {
                   </Button>
                   <Button
                     className="bg-white hover:bg-gray-100 text-primary border border-primary w-full"
-                    onClick={() => { /* Placeholder for buyers modal */ setMobileMenuOpen(false); }}
+                    onClick={() => { setShowBuyerModal(true); setMobileMenuOpen(false); }}
                   >
                     For Buyers
                   </Button>
@@ -901,7 +1161,7 @@ export default function AerotraqLanding() {
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-white px-10 py-5 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              onClick={() => {/* Placeholder for buyers waitlist modal */}}
+              onClick={() => setShowBuyerModal(true)}
             >
               Join Buyer Waitlist
             </Button>
@@ -1390,6 +1650,7 @@ export default function AerotraqLanding() {
       {/* Place the modal at the end of your component */}
       <DemoModal />
       <EarlyAccessModal />
+      <BuyerModal />
     </div>
   )
 }
