@@ -1053,7 +1053,7 @@ export default function AerotraqLanding() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center">
-                  Automatically convert your flight data into verifiable intellectual property stored on IPFS.
+                Automatically convert your flight data into verifiable intellectual property stored on a decentralized, tamper-proof storage.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -1067,7 +1067,7 @@ export default function AerotraqLanding() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center">
-                  We automatically generate smart contracts that enforce your chosen licensing terms and usage rights — no technical setup required.
+                Apply licensing terms and usage rights to your data through smart contracts — enforceable, transparent, and ready to use with no technical setup.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -1106,12 +1106,8 @@ export default function AerotraqLanding() {
               <div className="bg-white rounded-lg p-6 shadow-sm border border-slate-200">
                 <h3 className="text-2xl font-bold text-midnight mb-4">1. AI-Powered Compliance</h3>
                 <p className="text-text mb-4">
-                  Our AI system, powered by GPT and LlamaIndex, automatically validates your flight plans against
-                  regulatory requirements and airspace restrictions.
+                Our AI-powered compliance tool automatically validates your flight plans against regulatory requirements and airspace restrictions.
                 </p>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
-                  GPT + LlamaIndex
-                </Badge>
               </div>
             </div>
 
@@ -1120,14 +1116,10 @@ export default function AerotraqLanding() {
                 <Globe className="w-8 h-8 text-white" />
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm border border-slate-200">
-                <h3 className="text-2xl font-bold text-midnight mb-4">2. DGIP Generation & IPFS Storage</h3>
+                <h3 className="text-2xl font-bold text-midnight mb-4">2. DGIP Generation & Storage</h3>
                 <p className="text-text mb-4">
-                  Flight data is processed into Drone Generated Intellectual Property (DGIP) and securely stored on IPFS
-                  with immutable proof of creation.
+                Flight data is processed into Drone-Generated Intellectual Property (DGIP) and securely stored in decentralized, tamper-proof storage with immutable proof of creation.
                 </p>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
-                  IPFS Network
-                </Badge>
               </div>
             </div>
 
@@ -1138,12 +1130,8 @@ export default function AerotraqLanding() {
               <div className="bg-white rounded-lg p-6 shadow-sm border border-slate-200">
                 <h3 className="text-2xl font-bold text-midnight mb-4">3. IP Tokenization + Royalty Management</h3>
                 <p className="text-text mb-4">
-                  Your DGIP is tokenized using Story Protocol, enabling programmable licensing and automatic royalty
-                  distribution to your wallet.
+                Your DGIP is tokenized, enabling programmable licensing and automatic royalty distribution to your wallet.
                 </p>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
-                  Story Protocol
-                </Badge>
               </div>
             </div>
           </div>
@@ -1170,7 +1158,7 @@ export default function AerotraqLanding() {
       </section>
 
       {/* Demo Preview Section */}
-      <section id="demo" className="py-24 bg-background">
+      <section id="demo" className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-midnight mb-4">See Aerotraq in Action</h2>
@@ -1208,7 +1196,7 @@ export default function AerotraqLanding() {
       </section>
 
       {/* Updated Market Opportunity Section */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-midnight mb-4">
@@ -1275,7 +1263,7 @@ export default function AerotraqLanding() {
       </section>
 
       {/* Mission/Vision Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-midnight mb-8">
@@ -1298,58 +1286,7 @@ export default function AerotraqLanding() {
         </div>
       </section>
 
-      {/* Technology Stack Section */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-midnight mb-4">Built on Cutting-Edge Technology</h2>
-            <p className="text-xl text-text max-w-3xl mx-auto">
-              Powered by the most advanced AI, blockchain, and decentralized storage technologies
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "AI Compliance Engine",
-                description:
-                  "Advanced language model used to assist in regulatory interpretation and contextual flight analysis.",
-              },
-              {
-                name: "LlamaIndex",
-                description:
-                  "Agent framework enabling dynamic tool use and retrieval for airspace compliance workflows.",
-              },
-              {
-                name: "OpenAIP",
-                description:
-                  "Real-time airspace intelligence and No-Fly Zone validation via Multi-Cloud Protocol integration.",
-              },
-              {
-                name: "Solidity",
-                description:
-                  "Smart contracts securing drone flight records and DGIP mappings on a decentralized ledger.",
-              },
-              {
-                name: "IPFS",
-                description: "Distributed storage layer for authenticated, tamper-proof telemetry and flight data.",
-              },
-              {
-                name: "Story Protocol",
-                description:
-                  "Tokenization and licensing infrastructure for DGIP, with built-in royalty tracking and monetization.",
-              },
-            ].map((tech, index) => (
-              <div key={index} className="text-left">
-                <div className="w-16 h-16 bg-white rounded-lg border border-slate-200 flex items-center justify-center mb-4 hover:border-primary/50 transition-colors">
-                  <div className="w-8 h-8 bg-primary/10 rounded"></div>
-                </div>
-                <h3 className="font-bold text-midnight mb-3 text-lg">{tech.name}</h3>
-                <p className="text-sm text-text leading-relaxed">{tech.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Team Section */}
       <section id="team" className="py-24 bg-background">
@@ -1628,7 +1565,7 @@ export default function AerotraqLanding() {
           </div>
 
           <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-300 text-sm">© 2024 Aerotraq. All rights reserved.</p>
+            <p className="text-gray-300 text-sm">© 2025 Aerotraq. All rights reserved.</p>
             <div className="flex space-x-8 text-sm text-gray-300 mt-4 md:mt-0">
               <a href="#" className="hover:text-white transition-colors duration-300">
                 Privacy Policy
